@@ -1,0 +1,24 @@
+#password is: user1pwd
+user1:
+  hash: $2y$12$pmbhIOjvXSuAG6/UMF/9Uuo2Mb1SImGCO2CbcNSS8ItckxV84i/iO
+  roles:
+    - kibanauser
+    - newf1
+
+#password is: user2pwd
+user2:
+  hash: $2y$12$qD0TAax.nm5y1dbwysIsQ.tA6.sj.MvEH6Pp9FZCcf1G4rcOKAtze
+  roles:
+    - kibanauser
+    - newf2
+
+#password is: fluentdpwd
+fluentd:
+  hash: $2y$12$FTrKoQIkUIv/y7MDHgeWK.wAv1FKvqXUk0tpLe98hC1XNToSyz4IS
+  roles:
+    - fluentd
+
+#password is: kibanaserver_pwd
+kibanaserver:
+  hash: $2y$12$yTdN8pCDMlcXQwvqhwNrGO7EBGi6vmr3n5I/VvArUBja1XLBapjRi
+

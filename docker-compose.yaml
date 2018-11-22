@@ -1,0 +1,44 @@
+version: '2'
+services:
+  web:
+    image: httpd
+    ports:
+      - "80:80"
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
+
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    links:
+      - "elasticsearch"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+  elasticsearch:
+    build: ./elasticsearch
+    volumes:
+      - ./elasticsearch/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/conf/sg:/usr/share/elasticsearch/plugins/search-guard-6/sgconfig
+    expose:
+      - 9200
+      - 9300
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
+  kibana:
+    build: ./kibana
+    volumes:
+      - ./kibana/conf:/usr/share/kibana/config
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
